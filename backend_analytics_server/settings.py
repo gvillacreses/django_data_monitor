@@ -26,7 +26,9 @@ SECRET_KEY = 'django-insecure-rc+22dxsomrf+f(t#&*=2+-y%ylt#hc4$*nk&+gvn0s6dl-k9c
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+
+CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1:8000"]
 
 API_URL = 'https://jsonplaceholder.typicode.com/posts'
 

@@ -36,12 +36,18 @@
             </li>
             <!-- Profile menu -->
             <li class="relative">
+                {% if user.is_authenticated %}
+
+                    <span>{{ user.username }}</span>
+
+                {% endif %}
+
                 <button class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none"
                     @click="toggleProfileMenu" @keydown.escape="closeProfileMenu" aria-label="Account"
                     aria-haspopup="true">
                     <img class="object-cover w-8 h-8 rounded-full"
-                        src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82"
-                        alt="" aria-hidden="true" />
+                        src="https://www.gravatar.com/avatar/?d=mp&f=y"
+                        alt="Avatar de usuario" />
                 </button>
                 <template x-if="isProfileMenuOpen">
                     <ul x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100"
@@ -54,10 +60,10 @@
                             <!-- START - Block Logout -->
 
                             <!-- Método post y action para el URL (con el alias 'logout') -->
-                            <form class="w-full">
+                            <form method="post" action="{% url 'logout' %}" class="w-full">
 
                                 <!-- CSRF token -->
-                                
+                                {% csrf_token %}
                                 <button
                                     type="submit"
                                     class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200">
